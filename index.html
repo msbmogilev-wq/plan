@@ -4,209 +4,319 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Служение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background: #f4f1ea;
-    color: #2c2a26;
-    padding: 20px;
+  :root{
+    --bg:#12141C;
+    --surface:#1B1E29;
+    --line:#2B2F3D;
+    --ink:#F2F3F7;
+    --ink-soft:#8D93A6;
+    --accent:#4F8EF7;
+    --accent-soft:rgba(79,142,247,.14);
   }
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter", Arial, sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
   }
-  h1 {
-    text-align: center;
-    font-size: 1.4em;
-    margin-bottom: 20px;
-    color: #4a3f2f;
+  .wrap{ max-width:640px; margin:0 auto; padding:0 24px 90px; }
+
+  header.top{ padding:60px 0 32px; text-align:center; }
+  header.top .kicker{
+    font-size:13px;
+    color:var(--accent);
+    font-weight:600;
+    margin:0 0 14px;
   }
-  .buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+  header.top h1{
+    font-family:"Manrope", sans-serif;
+    font-weight:800;
+    font-size:46px;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    margin:0 0 10px;
   }
-  .tab-btn {
-    flex: 1;
-    padding: 14px 10px;
-    border: none;
-    border-radius: 10px;
-    background: #e2dccb;
-    color: #4a3f2f;
-    font-size: 1em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+  header.top .date{ color:var(--ink-soft); font-size:15px; }
+
+  /* --- tabs --- */
+  .tabs{
+    display:flex;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:4px;
+    margin:32px 0 0;
+    gap:4px;
   }
-  .tab-btn.active {
-    background: #7a6a4f;
-    color: #fff;
+  .tab{
+    flex:1;
+    appearance:none;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    font-family:"Inter", sans-serif;
+    font-size:15px;
+    font-weight:600;
+    padding:11px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:background .18s ease, color .18s ease;
   }
-  .section {
-    display: none;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px 22px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    line-height: 1.5;
+  .tab[aria-selected="true"]{
+    background:var(--accent);
+    color:#0B0E14;
   }
-  .section.active {
-    display: block;
+  .tab:not([aria-selected="true"]):hover{ color:var(--ink); }
+
+  section.panel{ margin-top:44px; }
+  section.panel[hidden]{ display:none; }
+
+  h2{
+    font-family:"Manrope", sans-serif;
+    font-weight:800;
+    font-size:15px;
+    letter-spacing:.01em;
+    color:var(--ink-soft);
+    margin:0 0 26px;
   }
-  .item {
-    display: flex;
-    gap: 14px;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+  h3{
+    font-family:"Manrope", sans-serif;
+    font-weight:700;
+    font-size:19px;
+    margin:40px 0 16px;
   }
-  .item:last-child { border-bottom: none; }
-  .time {
-    flex-shrink: 0;
-    width: 60px;
-    font-weight: 700;
-    color: #7a6a4f;
+
+  /* --- schedule rows (plan) --- */
+  .row{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:18px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
   }
-  .desc { flex: 1; }
-  .desc .who {
-    color: #888;
-    font-size: 0.92em;
-    display: block;
-    margin-top: 2px;
+  .row:last-child{ border-bottom:1px solid var(--line); }
+  .row .t{
+    font-family:"Manrope", sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--accent);
+    padding-top:1px;
   }
-  .sub-list {
-    margin: 4px 0 0 0;
-    padding-left: 18px;
+  .row .what{ font-weight:600; }
+  .row .who{ color:var(--ink-soft); }
+  .row .note{ color:var(--ink-soft); font-size:15px; margin-top:3px; }
+  .row ul{ margin:8px 0 0; padding-left:18px; color:var(--ink-soft); }
+
+  .foot-note{
+    margin-top:20px;
+    font-size:14px;
+    color:var(--ink-soft);
+    font-style:italic;
   }
-  .note {
-    margin-top: 18px;
-    font-size: 0.9em;
-    color: #777;
-    font-style: italic;
+
+  /* --- announcements --- */
+  .lede{ color:var(--ink-soft); }
+
+  .highlight{
+    background:var(--accent-soft);
+    border:1px solid rgba(79,142,247,.35);
+    border-radius:14px;
+    padding:20px 22px;
+    margin:26px 0;
   }
-  h2.section-title {
-    margin-top: 0;
-    color: #4a3f2f;
-    font-size: 1.2em;
+  .highlight strong{ color:var(--accent); }
+
+  .day{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:4px 18px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
   }
-  .ann-block {
-    margin-bottom: 16px;
+  .day:last-child{ border-bottom:1px solid var(--line); }
+  .day .when{
+    font-family:"Manrope", sans-serif;
+    font-weight:700;
+    color:var(--accent);
+    font-size:14.5px;
   }
-  .ann-item {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+  .day .note{ grid-column:2; color:var(--ink-soft); font-size:15px; margin-top:-1px; }
+
+  blockquote{
+    margin:32px 0;
+    padding:18px 22px;
+    background:var(--surface);
+    border-radius:14px;
+    color:var(--ink-soft);
+    font-style:italic;
   }
-  .ann-item:last-child { border-bottom: none; }
-  .ann-time {
-    font-weight: 700;
-    color: #7a6a4f;
+  blockquote cite{
+    display:block;
+    margin-top:10px;
+    font-style:normal;
+    font-size:14px;
+    color:var(--accent);
   }
-  .ann-title {
-    font-weight: 600;
+
+  .closing{
+    margin-top:40px;
+    text-align:center;
+    font-family:"Manrope", sans-serif;
+    font-weight:800;
+    font-size:19px;
   }
-  .ann-sub {
-    color: #888;
-    font-size: 0.9em;
-  }
-  .highlight {
-    background: #f7f2e6;
-    border-left: 4px solid #b39b6a;
-    padding: 12px 14px;
-    border-radius: 6px;
-    margin: 14px 0;
-  }
-  .blessing {
-    text-align: center;
-    margin-top: 18px;
-    font-weight: 600;
-    color: #4a3f2f;
+
+  @media (max-width:480px){
+    header.top h1{ font-size:34px; }
+    .row{ grid-template-columns:52px 1fr; gap:12px; }
+    .day{ grid-template-columns:1fr; }
+    .day .note{ grid-column:1; }
   }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>Служение</h1>
-  <div class="buttons">
-    <button class="tab-btn active" onclick="showSection('plan')">План служения</button>
-    <button class="tab-btn" onclick="showSection('ann')">Объявления</button>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="kicker">Церковь «Мир с Богом»</p>
+    <h1>Служение</h1>
+    <p class="date">Воскресенье, 27 сентября 2026</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="true">План служения</button>
+    <button class="tab" role="tab" id="tab-ann" aria-controls="panel-ann" aria-selected="false">Объявления</button>
   </div>
 
-  <div id="plan" class="section active">
-    <h2 class="section-title">План служения</h2>
+  <section class="panel" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan">
+    <h2>ПЛАН СЛУЖЕНИЯ</h2>
 
-    <div class="item"><div class="time">10:30</div><div class="desc">Конец репетиций<span class="who">Включаются песни — фон в зале до начала.</span></div></div>
-    <div class="item"><div class="time">10:45</div><div class="desc">Обратный таймер</div></div>
-    <div class="item"><div class="time">11:00</div><div class="desc">Вступление<span class="who">Группа прославления</span></div></div>
-    <div class="item"><div class="time">11:30</div><div class="desc">Молитва<span class="who">Юрченко Артём</span></div></div>
-    <div class="item"><div class="time">11:35</div><div class="desc">Поэтическое служение</div></div>
-    <div class="item"><div class="time">11:40</div><div class="desc">Приветствие гостей<span class="who">Александр Жилач</span></div></div>
-    <div class="item"><div class="time">11:45</div><div class="desc">Проповедь<span class="who">Александр Иванович Гулько</span></div></div>
-    <div class="item"><div class="time">12:25</div><div class="desc">Молитва покаяния</div></div>
-    <div class="item"><div class="time">12:30</div><div class="desc">Сбор десятин
-      <ul class="sub-list">
-        <li>Молитва за нужды</li>
-        <li>Молитва за пастора</li>
-      </ul>
-    </div></div>
-    <div class="item"><div class="time">12:40</div><div class="desc">Молитва за новорождённого</div></div>
-    <div class="item"><div class="time">12:50</div><div class="desc">Объявления</div></div>
-
-    <div class="note">Актуальную версию хронометража уточняйте у координатора служения.</div>
-  </div>
-
-  <div id="ann" class="section">
-    <h2 class="section-title">Объявления</h2>
-    <p>Дорогие братья и сёстры! Основные события и объявления предстоящей недели.</p>
-
-    <div class="ann-block">
-      <h3 style="margin-bottom:6px; color:#7a6a4f;">Расписание служений</h3>
-
-      <div class="ann-item">
-        <div class="ann-time">Сегодня · 17:00</div>
-        <div class="ann-title">Сестринская молитва</div>
-        <div class="ann-sub">Сразу после служения.</div>
-      </div>
-
-      <div class="ann-item">
-        <div class="ann-time">Сегодня · 17:00</div>
-        <div class="ann-title">Молодёжное служение</div>
-      </div>
-
-      <div class="ann-item">
-        <div class="ann-time">Чт · 18:00</div>
-        <div class="ann-title">Вечернее богослужение</div>
-      </div>
-
-      <div class="ann-item">
-        <div class="ann-time">Сб · 15:30</div>
-        <div class="ann-title">Подростковое служение</div>
-      </div>
-
-      <div class="ann-item">
-        <div class="ann-time">Вс · 10:30 / 11:00</div>
-        <div class="ann-title">Богослужение</div>
-        <div class="ann-sub">10:30 — чай и общение, 11:00 — начало служения.</div>
+    <div class="row">
+      <div class="t">10:30</div>
+      <div><div class="what">Конец репетиций</div><div class="note">Включаются песни — фон в зале до начала.</div></div>
+    </div>
+    <div class="row">
+      <div class="t">10:45</div>
+      <div class="what">Обратный таймер</div>
+    </div>
+    <div class="row">
+      <div class="t">11:00</div>
+      <div><span class="what">Вступление</span> — <span class="who">Группа прославления</span></div>
+    </div>
+    <div class="row">
+      <div class="t">11:30</div>
+      <div><span class="what">Молитва</span> — <span class="who">Юрченко Артём</span></div>
+    </div>
+    <div class="row">
+      <div class="t">11:35</div>
+      <div class="what">Поэтическое служение</div>
+    </div>
+    <div class="row">
+      <div class="t">11:40</div>
+      <div><span class="what">Приветствие гостей</span> — <span class="who">служение News</span></div>
+    </div>
+    <div class="row">
+      <div class="t">11:45</div>
+      <div><span class="what">Проповедь</span> (20 минут) — <span class="who">Тарасов Владимир</span></div>
+    </div>
+    <div class="row">
+      <div class="t">12:05</div>
+      <div><span class="what">Проповедь</span> (20 минут) — <span class="who">Юрченко Артём</span></div>
+    </div>
+    <div class="row">
+      <div class="t">12:25</div>
+      <div class="what">Молитва покаяния</div>
+    </div>
+    <div class="row">
+      <div class="t">12:30</div>
+      <div>
+        <div class="what">Сбор десятин</div>
+        <ul><li>Молитва за нужды</li><li>Молитва за пастора</li></ul>
       </div>
     </div>
+    <div class="row">
+      <div class="t">12:50</div>
+      <div class="what">Объявления</div>
+    </div>
+
+    <p class="foot-note">Актуальную версию хронометража уточняйте у координатора служения.</p>
+  </section>
+
+  <section class="panel" id="panel-ann" role="tabpanel" aria-labelledby="tab-ann" hidden>
+    <h2>ОБЪЯВЛЕНИЯ</h2>
+
+    <p class="lede">Дорогие братья и сёстры! Основные события и объявления предстоящей недели.</p>
 
     <div class="highlight">
-      Ко всем братьям и сёстрам: не спешите расходиться сразу после богослужения. Останьтесь на чаепитие, познакомьтесь с теми, кого ещё не знаете, поддержите новых людей добрым словом. Пусть каждый почувствует себя частью большой Божьей семьи.
+      <strong>Воскресенье 11 октября</strong> — служение пройдёт с участием пастора Могилёвчика Виталия Анатольевича, будет <strong>хлебопреломление</strong>.
     </div>
 
-    <p>Хотите участвовать в каком-либо служении в церкви? Подойдите к диаконам — Михаилу или Евгению, или к брату Александру Жилачу.</p>
+    <h3>Расписание служений</h3>
 
-    <div class="blessing">Благословенной всем недели! До встречи в наш следующий раз 🙏</div>
-  </div>
+    <div class="day">
+      <div class="when">Сегодня</div>
+      <div class="what">Сестринское молитвенное служение</div>
+      <div class="note">Сразу после служения, после чаепития.</div>
+    </div>
+    <div class="day">
+      <div class="when">Сегодня, 17:00</div>
+      <div class="what">Молодёжное служение</div>
+      <div class="note">Молодёжь, будем рады видеть каждого из вас — приходите и приглашайте друзей!</div>
+    </div>
+    <div class="day">
+      <div class="when">Чт 1 окт, 18:00</div>
+      <div class="what">Вечернее богослужение</div>
+      <div class="note">Особенное время, когда мы вместе ищем Божьего лица и молимся друг за друга.</div>
+    </div>
+    <div class="day">
+      <div class="when">Сб 3 окт, 19:00</div>
+      <div class="what">Вечер хвалы и поклонения</div>
+      <div class="note">Для молодёжи и подростков нашей Церкви, региона и города Могилёва. Подросткового служения в этот день не будет.</div>
+    </div>
+    <div class="day">
+      <div class="when">Вс 4 окт, 10:30 / 11:00</div>
+      <div class="what">Богослужение</div>
+      <div class="note">10:30 — чай и общение, 11:00 — начало служения.</div>
+    </div>
+
+    <p>Если вы сегодня впервые в нашей церкви, не спешите уходить после служения. Нам очень хочется познакомиться с вами лично, пообщаться и ответить на ваши вопросы.</p>
+
+    <p>Большая просьба ко всем нашим братьям и сёстрам: не спешите расходиться сразу после богослужения. Останьтесь на чаепитие, познакомьтесь с теми, кого, возможно, ещё не знаете, поддержите новых людей добрым словом и общением. Пусть каждый, кто приходит в нашу церковь, почувствует себя частью большой Божьей семьи.</p>
+
+    <p>Также обращаемся ко всем, кто хочет участвовать в каком-либо служении в Церкви: подойдите, пожалуйста, к диаконам — Михаилу или Евгению, или к брату Александру Жилачу.</p>
+
+    <blockquote>
+      «Служите друг другу, каждый тем даром, какой получил, как добрые домостроители многоразличной благодати Божией».
+      <cite>1 Послание Петра 4:10</cite>
+    </blockquote>
+
+    <p class="closing">Благословений вам и хорошего воскресного дня!</p>
+  </section>
+
 </div>
 
 <script>
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
-}
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        var active = t === tab;
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+        if(active){ panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden',''); }
+      });
+    });
+  });
 </script>
+
 </body>
 </html>
