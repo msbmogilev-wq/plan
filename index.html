@@ -9,52 +9,74 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#12141C;
-    --surface:#1B1E29;
-    --line:#2B2F3D;
-    --ink:#F2F3F7;
-    --ink-soft:#8D93A6;
-    --accent:#4F8EF7;
-    --accent-soft:rgba(79,142,247,.14);
+    --bg:#0B0C12;
+    --surface:rgba(255,255,255,.045);
+    --surface-2:rgba(255,255,255,.07);
+    --line:rgba(255,255,255,.08);
+    --ink:#F4F5FA;
+    --ink-soft:#9A9FB4;
+    --accent:#7C9CFF;
+    --accent-2:#B78CFF;
+    --grad:linear-gradient(135deg,#7C9CFF 0%,#B78CFF 100%);
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--bg);
+    min-height:100vh;
+    background:
+      radial-gradient(900px 500px at 10% -10%, rgba(124,156,255,.22), transparent 60%),
+      radial-gradient(700px 450px at 100% 0%, rgba(183,140,255,.16), transparent 60%),
+      var(--bg);
+    background-attachment:fixed;
     color:var(--ink);
     font-family:"Inter", Arial, sans-serif;
-    font-size:17px;
+    font-size:16.5px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{ max-width:640px; margin:0 auto; padding:0 24px 90px; }
+  .wrap{ max-width:660px; margin:0 auto; padding:0 16px 90px; }
 
-  header.top{ padding:60px 0 32px; text-align:center; }
+  header.top{ padding:64px 0 8px; text-align:center; }
   header.top .kicker{
-    font-size:13px;
-    color:var(--accent);
+    display:inline-block;
+    font-size:12.5px;
     font-weight:600;
-    margin:0 0 14px;
+    letter-spacing:.04em;
+    color:var(--ink);
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:6px 14px;
+    margin:0 0 20px;
   }
   header.top h1{
     font-family:"Manrope", sans-serif;
     font-weight:800;
-    font-size:46px;
-    line-height:1.05;
-    letter-spacing:-.02em;
-    margin:0 0 10px;
+    font-size:56px;
+    line-height:1;
+    letter-spacing:-.035em;
+    margin:0 0 14px;
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
-  header.top .date{ color:var(--ink-soft); font-size:15px; }
+  header.top .date{ color:var(--ink-soft); font-size:15px; margin:0; }
 
   /* --- tabs --- */
   .tabs{
+    position:sticky; top:12px; z-index:10;
     display:flex;
-    background:var(--surface);
+    background:rgba(20,22,32,.72);
+    -webkit-backdrop-filter:blur(16px);
+    backdrop-filter:blur(16px);
     border:1px solid var(--line);
-    border-radius:14px;
-    padding:4px;
-    margin:32px 0 0;
+    border-radius:999px;
+    padding:5px;
+    margin:36px 0 0;
     gap:4px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
   }
   .tab{
     flex:1;
@@ -66,118 +88,162 @@
     font-size:15px;
     font-weight:600;
     padding:11px 12px;
-    border-radius:10px;
+    border-radius:999px;
     cursor:pointer;
-    transition:background .18s ease, color .18s ease;
+    transition:background .25s ease, color .25s ease, box-shadow .25s ease;
   }
   .tab[aria-selected="true"]{
-    background:var(--accent);
-    color:#0B0E14;
+    background:var(--grad);
+    color:#0B0C12;
+    box-shadow:0 6px 18px rgba(124,156,255,.35);
   }
   .tab:not([aria-selected="true"]):hover{ color:var(--ink); }
 
-  section.panel{ margin-top:44px; }
+  section.panel{ margin-top:40px; animation:fade .35s ease; }
   section.panel[hidden]{ display:none; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 
   h2{
     font-family:"Manrope", sans-serif;
-    font-weight:800;
-    font-size:15px;
-    letter-spacing:.01em;
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:.14em;
     color:var(--ink-soft);
-    margin:0 0 26px;
+    margin:0 0 20px;
   }
   h3{
     font-family:"Manrope", sans-serif;
-    font-weight:700;
-    font-size:19px;
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:-.01em;
     margin:40px 0 16px;
   }
 
-  /* --- schedule rows (plan) --- */
+  /* --- schedule: timeline cards --- */
+  #panel-plan{ position:relative; }
   .row{
+    position:relative;
     display:grid;
-    grid-template-columns:64px 1fr;
-    gap:18px;
-    padding:16px 0;
-    border-top:1px solid var(--line);
+    grid-template-columns:62px 1fr;
+    gap:16px;
+    align-items:start;
+    padding:16px 18px;
+    margin:0 0 10px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
+    transition:background .2s ease, transform .2s ease, border-color .2s ease;
   }
-  .row:last-child{ border-bottom:1px solid var(--line); }
+  .row:hover{ background:var(--surface-2); border-color:rgba(124,156,255,.3); transform:translateY(-1px); }
   .row .t{
     font-family:"Manrope", sans-serif;
-    font-weight:700;
+    font-weight:800;
     font-size:15px;
     color:var(--accent);
-    padding-top:1px;
+    background:rgba(124,156,255,.12);
+    border-radius:10px;
+    text-align:center;
+    padding:4px 0;
+    font-variant-numeric:tabular-nums;
   }
   .row .what{ font-weight:600; }
   .row .who{ color:var(--ink-soft); }
-  .row .note{ color:var(--ink-soft); font-size:15px; margin-top:3px; }
-  .row ul{ margin:8px 0 0; padding-left:18px; color:var(--ink-soft); }
+  .row .note{ color:var(--ink-soft); font-size:14.5px; margin-top:3px; }
+  .row ul{ margin:10px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:6px; }
+  .row ul li{
+    font-size:13.5px;
+    color:var(--ink);
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:4px 12px;
+  }
 
   .foot-note{
     margin-top:20px;
-    font-size:14px;
+    font-size:13.5px;
     color:var(--ink-soft);
-    font-style:italic;
+    text-align:center;
   }
 
   /* --- announcements --- */
-  .lede{ color:var(--ink-soft); }
+  .lede{ color:var(--ink-soft); font-size:17px; }
 
   .highlight{
-    background:var(--accent-soft);
-    border:1px solid rgba(79,142,247,.35);
-    border-radius:14px;
-    padding:20px 22px;
+    position:relative;
+    background:linear-gradient(135deg, rgba(124,156,255,.16), rgba(183,140,255,.12));
+    border:1px solid rgba(124,156,255,.35);
+    border-radius:20px;
+    padding:22px 24px;
     margin:26px 0;
+    box-shadow:0 12px 40px rgba(124,156,255,.12);
   }
-  .highlight strong{ color:var(--accent); }
+  .highlight strong{ color:#C9D5FF; }
 
   .day{
     display:grid;
     grid-template-columns:150px 1fr;
     gap:4px 18px;
-    padding:16px 0;
-    border-top:1px solid var(--line);
+    padding:16px 18px;
+    margin:0 0 10px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
   }
-  .day:last-child{ border-bottom:1px solid var(--line); }
   .day .when{
     font-family:"Manrope", sans-serif;
     font-weight:700;
     color:var(--accent);
     font-size:14.5px;
   }
-  .day .note{ grid-column:2; color:var(--ink-soft); font-size:15px; margin-top:-1px; }
+  .day .what{ font-weight:600; }
+  .day .note{ grid-column:2; color:var(--ink-soft); font-size:14.5px; margin-top:-1px; }
 
   blockquote{
+    position:relative;
     margin:32px 0;
-    padding:18px 22px;
+    padding:26px 24px 20px;
     background:var(--surface);
-    border-radius:14px;
-    color:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:20px;
+    color:var(--ink);
+    font-size:17px;
     font-style:italic;
+  }
+  blockquote::before{
+    content:"\201C";
+    position:absolute; top:-18px; left:20px;
+    font-family:"Manrope", sans-serif;
+    font-size:64px; line-height:1; font-style:normal;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   blockquote cite{
     display:block;
     margin-top:10px;
     font-style:normal;
-    font-size:14px;
+    font-size:13.5px;
+    font-weight:600;
     color:var(--accent);
   }
 
   .closing{
-    margin-top:40px;
+    margin-top:44px;
     text-align:center;
     font-family:"Manrope", sans-serif;
     font-weight:800;
-    font-size:19px;
+    font-size:22px;
+    letter-spacing:-.01em;
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
 
   @media (max-width:480px){
-    header.top h1{ font-size:34px; }
-    .row{ grid-template-columns:52px 1fr; gap:12px; }
-    .day{ grid-template-columns:1fr; }
+    header.top{ padding-top:44px; }
+    header.top h1{ font-size:42px; }
+    .row{ grid-template-columns:54px 1fr; gap:12px; padding:14px; }
+    .day{ grid-template-columns:1fr; padding:14px; }
     .day .note{ grid-column:1; }
   }
 </style>
@@ -189,7 +255,7 @@
   <header class="top">
     <p class="kicker">Церковь «Мир с Богом»</p>
     <h1>Служение</h1>
-    <p class="date">Воскресенье, 27 сентября 2026</p>
+    <p class="date">Воскресенье, 4 октября 2026</p>
   </header>
 
   <div class="tabs" role="tablist" aria-label="Разделы">
@@ -214,11 +280,11 @@
     </div>
     <div class="row">
       <div class="t">11:30</div>
-      <div><span class="what">Молитва</span> — <span class="who">Юрченко Артём</span></div>
+      <div><span class="what">Молитва</span> — <span class="who">Асипенко Евгений</span></div>
     </div>
     <div class="row">
       <div class="t">11:35</div>
-      <div class="what">Поэтическое служение</div>
+      <div class="what">Литературное служение</div>
     </div>
     <div class="row">
       <div class="t">11:40</div>
@@ -226,11 +292,11 @@
     </div>
     <div class="row">
       <div class="t">11:45</div>
-      <div><span class="what">Проповедь</span> (20 минут) — <span class="who">Тарасов Владимир</span></div>
+      <div><span class="what">Проповедь</span> (20 минут) — <span class="who">Жилач Александр</span></div>
     </div>
     <div class="row">
       <div class="t">12:05</div>
-      <div><span class="what">Проповедь</span> (20 минут) — <span class="who">Юрченко Артём</span></div>
+      <div><span class="what">Проповедь</span> (20 минут) — <span class="who">Асипенко Евгений</span></div>
     </div>
     <div class="row">
       <div class="t">12:25</div>
@@ -240,12 +306,17 @@
       <div class="t">12:30</div>
       <div>
         <div class="what">Сбор десятин</div>
-        <ul><li>Молитва за нужды</li><li>Молитва за пастора</li></ul>
+        <ul><li>Молитва за нужды</li><li>Молитва за пастора</li><li>Молитва за учителей</li><li>Молитва за дни рождения</li></ul>
       </div>
     </div>
     <div class="row">
       <div class="t">12:50</div>
       <div class="what">Объявления</div>
+    </div>
+
+    <div class="highlight">
+      <strong>Текст приветствия гостей</strong>
+      <p style="margin:10px 0 0">Мы сердечно приветствуем всех гостей, которые сегодня с нами! Особенно рады тем, кто пришёл к нам впервые, и тем, кто давно у нас не был. Пожалуйста, поднимите руку — мы хотим вручить вам небольшой подарок на память о сегодняшнем дне. Добро пожаловать домой!</p>
     </div>
 
     <p class="foot-note">Актуальную версию хронометража уточняйте у координатора служения.</p>
@@ -265,12 +336,7 @@
     <div class="day">
       <div class="when">Сегодня</div>
       <div class="what">Сестринское молитвенное служение</div>
-      <div class="note">Сразу после служения, после чаепития.</div>
-    </div>
-    <div class="day">
-      <div class="when">Сегодня, 14:00</div>
-      <div class="what">Лидерское собрание</div>
-      <div class="note">В 13:30 можно подойти в воскресный класс, чтобы перекусить. Просьба присутствовать всем лидерам и их заместителям.</div>
+      <div class="note">По окончании служения, после чаепития. Приглашаем всех сестёр внести свою лепту ходатайства за нашу Церковь и наши семьи.</div>
     </div>
     <div class="day">
       <div class="when">Сегодня, 17:00</div>
@@ -278,26 +344,26 @@
       <div class="note">Молодёжь, будем рады видеть каждого из вас — приходите и приглашайте друзей!</div>
     </div>
     <div class="day">
-      <div class="when">Чт 1 окт, 18:00</div>
+      <div class="when">Чт 8 окт, 18:00</div>
       <div class="what">Вечернее богослужение</div>
       <div class="note">Особенное время, когда мы вместе ищем Божьего лица и молимся друг за друга.</div>
     </div>
     <div class="day">
-      <div class="when">Сб 3 окт, 19:00</div>
-      <div class="what">Вечер хвалы и поклонения</div>
-      <div class="note">Для молодёжи и подростков нашей Церкви, региона и города Могилёва. Подросткового служения в этот день не будет.</div>
+      <div class="when">Сб 10 окт, 15:30</div>
+      <div class="what">Подростковое служение</div>
+      <div class="note">Если у вас есть подростки или знакомые ребята этого возраста, обязательно приглашайте их.</div>
     </div>
     <div class="day">
-      <div class="when">Вс 4 окт, 10:30 / 11:00</div>
-      <div class="what">Богослужение</div>
-      <div class="note">10:30 — чай и общение, 11:00 — начало служения.</div>
+      <div class="when">Вс 11 окт, 10:30 / 11:00</div>
+      <div class="what">Богослужение с хлебопреломлением</div>
+      <div class="note">10:30 — чай, общение и знакомство, 11:00 — начало служения.</div>
     </div>
 
     <p>Если вы сегодня впервые в нашей церкви, не спешите уходить после служения. Нам очень хочется познакомиться с вами лично, пообщаться и ответить на ваши вопросы.</p>
 
     <p>Большая просьба ко всем нашим братьям и сёстрам: не спешите расходиться сразу после богослужения. Останьтесь на чаепитие, познакомьтесь с теми, кого, возможно, ещё не знаете, поддержите новых людей добрым словом и общением. Пусть каждый, кто приходит в нашу церковь, почувствует себя частью большой Божьей семьи.</p>
 
-    <p>Также обращаемся ко всем, кто хочет участвовать в каком-либо служении в Церкви: подойдите, пожалуйста, к диаконам — Михаилу или Евгению, или к брату Александру Жилачу.</p>
+    <p>Также обращаемся ко всем, кто хочет участвовать в каком-либо служении в Церкви: подойдите, пожалуйста, к диаконам — Михаилу и Евгению, или к брату Александру.</p>
 
     <blockquote>
       «Служите друг другу, каждый тем даром, какой получил, как добрые домостроители многоразличной благодати Божией».
