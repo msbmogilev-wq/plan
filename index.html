@@ -2,95 +2,95 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Служение</title>
 <style>
-:root{--bg:#f7f7f5;--card:#fff;--text:#1d1d1b;--muted:#6b6b66;--accent:#2f6f5e;--line:#e4e4df;--name:#b4400f;--namebg:#fdebdd}
-@media (prefers-color-scheme:dark){:root{--bg:#171716;--card:#222221;--text:#ecece8;--muted:#9a9a93;--accent:#6fc0a8;--line:#333330;--name:#ffb27a;--namebg:#3d2a1c}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:640px;margin:0 auto;padding:24px 16px 48px}
-.church{color:var(--muted);font-size:14px;margin:0}
-h1{margin:4px 0 2px;font-size:28px}
-.date{color:var(--muted);margin:0 0 20px}
-h2{font-size:14px;letter-spacing:.08em;color:var(--accent);margin:24px 0 8px}
-.item{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}
-.time{font-weight:700;color:var(--accent);min-width:52px}
-.title{font-weight:600}
-.who{color:var(--muted);font-size:15px}
-ul{margin:6px 0 0;padding-left:20px}
-.note{margin-top:6px;font-size:14px;color:var(--muted)}
-.greet{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
-.name{color:var(--name);background:var(--namebg);font-weight:600;padding:0 5px;border-radius:5px}
-.tabs{display:flex;gap:8px;margin-bottom:8px}
-.tab{flex:1;font:inherit;font-weight:600;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer}
-.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.news{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:8px}
-.news .title{margin-bottom:4px}
-.when{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:2px}
-.verse{margin:16px 0;padding:10px 14px;border-left:3px solid var(--accent);color:var(--muted);font-style:italic}
-.foot{color:var(--muted);font-size:13px;margin-top:20px}
+:root{--bg:#161616;--card:#212121;--line:#333;--fg:#f3f3f3;--muted:#a3a3a3;--mint:#6fc0a8;--chip-bg:#3a2a20;--chip-fg:#ff9f6e;
+color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:610px;margin:0 auto;padding:28px 16px 48px}
+.church{color:var(--muted);margin:0;font-size:14px}
+h1{font-size:28px;margin:8px 0 6px}
+.date{color:var(--muted);margin:0 0 22px;font-size:15px}
+.tabs{display:flex;gap:8px;margin-bottom:22px}
+.tabs button{flex:1;height:46px;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:10px;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--mint);border-color:var(--mint);color:#10231d}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);margin:0 0 10px}
+.card{display:grid;grid-template-columns:68px 1fr;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 14px;margin-bottom:10px}
+.time{color:var(--mint);font-weight:700;font-variant-numeric:tabular-nums}
+.title{font-weight:700}
+.sub{color:var(--muted);font-size:15px;margin-top:2px}
+.note{color:var(--muted);font-size:14px;margin-top:8px}
+.name{background:var(--chip-bg);color:var(--chip-fg);font-weight:600;border-radius:5px;padding:0 5px}
+ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+.greet{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--fg)}
+.foot{color:var(--muted);font-size:13px;margin-top:22px}
+.sec{margin-top:26px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.ev .d{color:var(--mint);font-weight:700;font-size:13px}
+.ev .t{font-weight:700;margin:2px 0 4px}
+.ev .x{margin:0}
+.lead,.txt{margin:0 0 16px}
+blockquote{margin:20px 0;padding:2px 0 2px 14px;border-left:3px solid var(--mint);color:var(--muted);font-style:italic}
+blockquote cite{display:block;font-style:italic;font-size:14px;margin-top:4px}
+[hidden]{display:none}
 </style>
 </head>
 <body>
 <main>
 <p class="church">Церковь «Мир с Богом»</p>
 <h1>Служение</h1>
-<p class="date">Воскресенье, 11 октября 2026</p>
+<p class="date">Воскресенье, 18 октября 2026</p>
 
 <div class="tabs" role="tablist">
-<button class="tab" role="tab" id="t-plan" aria-selected="true" onclick="show('plan')">План служения</button>
-<button class="tab" role="tab" id="t-news" aria-selected="false" onclick="show('news')">Объявления</button>
+<button role="tab" id="t1" aria-selected="true" aria-controls="p1">План служения</button>
+<button role="tab" id="t2" aria-selected="false" aria-controls="p2">Объявления</button>
 </div>
 
-<section id="plan">
-<h2>ПЛАН СЛУЖЕНИЯ</h2>
+<section id="p1" role="tabpanel" aria-labelledby="t1">
+<h2>План служения</h2>
 
-<div class="item"><div class="time">10:30</div><div><div class="title">Конец репетиций</div><div class="who">Включаются песни — фон в зале до начала.</div></div></div>
-<div class="item"><div class="time">10:45</div><div><div class="title">Обратный таймер</div></div></div>
-<div class="item"><div class="time">11:00</div><div><div class="title">Вступление</div><div class="who">Группа прославления</div></div></div>
-<div class="item"><div class="time">11:30</div><div><div class="title">Молитва</div><div class="who"><span class="name">Юдицкий Михаил</span></div></div></div>
-<div class="item"><div class="time">11:35</div><div><div class="title">Литературное служение</div><div class="who">Поздравление с Днём матери</div></div></div>
-<div class="item"><div class="time">11:40</div><div><div class="title">Песня ко Дню матери</div><div class="who"><span class="name">Ринат Лехкобыт</span></div><div class="note">В это время служители выносят открытки замужним женщинам церкви. Ответственная — <span class="name">Аня Дубровская</span>.</div></div></div>
-<div class="item"><div class="time">11:45</div><div><div class="title">Приветствие гостей</div><div class="who">Ответственная — <span class="name">Аня Дубровская</span></div></div></div>
-<div class="item"><div class="time">11:50</div><div><div class="title">Проповедь (40 минут)</div><div class="who"><span class="name">Могилёвчик Виталий Анатольевич</span>, пастор церкви «Благодать Христа», аг. Вишов</div></div></div>
-<div class="item"><div class="time">12:30</div><div><div class="title">Сбор десятин</div>
-<ul><li>Молитва за нужды</li><li>Молитва за пастора</li><li>Хлебопреломление</li></ul>
-<div class="note">Пастор рекомендовал участие <span class="name">Владимира Тарасова</span>.</div></div></div>
-<div class="item"><div class="time">12:50</div><div><div class="title">Объявления</div><div class="who">Ответственная — <span class="name">Аня Дубровская</span></div></div></div>
+<div class="card"><div class="time">10:30</div><div><div class="title">Конец репетиций</div><div class="sub">Включаются песни на фон. Ответственный — <span class="name">Костя Денисенко</span></div></div></div>
+<div class="card"><div class="time">10:45</div><div><div class="title">Обратный таймер (на фоне выключается свет)</div><div class="sub">Ответственная — <span class="name">Даша Шилина</span></div></div></div>
+<div class="card"><div class="time">11:00</div><div><div class="title">Вступление</div><div class="sub">Группа прославления</div></div></div>
+<div class="card"><div class="time">11:30</div><div><div class="title">Молитва</div><div class="sub"><span class="name">Юдицкий Михаил</span></div></div></div>
+<div class="card"><div class="time">11:35</div><div><div class="title">Воскресная школа</div><div class="sub">Поздравление с Днём отца. Ответственная — <span class="name">Анжела Неманкова</span></div></div></div>
+<div class="card"><div class="time">11:40</div><div><div class="title">Короткое слово в честь Дня отца</div><div class="sub"><span class="name">Александр Жилач</span></div></div></div>
+<div class="card"><div class="time">11:45</div><div><div class="title">Раздача открыток отцам</div><div class="sub">Служители раздают открытки отцам. Ответственная — <span class="name">Аня Дубровская</span></div></div></div>
+<div class="card"><div class="time">11:50</div><div><div class="title">Приветствие гостей</div><div class="sub">Ответственная — <span class="name">Аня Дубровская</span></div></div></div>
+<div class="card"><div class="time">11:55</div><div><div class="title">Проповедь</div><div class="sub"><span class="name">Тарасов Владимир</span></div></div></div>
+<div class="card"><div class="time">12:15</div><div><div class="title">Проповедь</div><div class="sub"><span class="name">Юдицкий Михаил</span></div></div></div>
+<div class="card"><div class="time">12:35</div><div><div class="title">Служебный блок</div><ul><li>Сбор десятин</li><li>Молитва за нужды</li><li>Молитва за пастора</li></ul></div></div>
+<div class="card"><div class="time">12:50</div><div><div class="title">Объявления</div><div class="sub">Ответственная — <span class="name">Аня Дубровская</span></div></div></div>
 
-<h2>ТЕКСТ ПРИВЕТСТВИЯ ГОСТЕЙ</h2>
-<div class="greet">Мы сердечно приветствуем всех гостей, которые сегодня с нами! Особенно рады тем, кто пришёл к нам впервые, и тем, кто давно у нас не был. Пожалуйста, поднимите руку — мы хотим вручить вам небольшой подарок на память о сегодняшнем дне. Добро пожаловать домой!</div>
+<div class="sec"><h2>Текст приветствия гостей</h2>
+<div class="greet">Мы сердечно приветствуем всех гостей, которые сегодня с нами! Особенно рады тем, кто пришёл к нам впервые, и тем, кто давно у нас не был. Пожалуйста, поднимите руку — мы хотим вручить вам небольшой подарок на память о сегодняшнем дне. Добро пожаловать домой!</div></div>
+</section>
+
+<section id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+<h2>Объявления</h2>
+<p class="lead">Дорогие братья и сёстры! Основные события и объявления предстоящей недели.</p>
+<h2>Расписание служений</h2>
+<div class="ev"><div class="d">Вс 18 окт</div><div class="t">Сестринское молитвенное служение</div><p class="x">По окончании служения, после чаепития. Приглашаем всех сестёр внести свою лепту ходатайства за нашу Церковь и наши семьи.</p></div>
+<div class="ev"><div class="d">Вс 18 окт, 17:00</div><div class="t">Молодёжное служение</div><p class="x">Молодёжь, будем рады видеть каждого из вас — приходите и приглашайте друзей!</p></div>
+<div class="ev"><div class="d">Чт 22 окт, 18:00</div><div class="t">Вечернее богослужение</div><p class="x">Особенное время, когда мы вместе ищем Божьего лица и молимся друг за друга.</p></div>
+<div class="ev"><div class="d">Сб 24 окт, 15:30</div><div class="t">Подростковое служение</div><p class="x">Если у вас есть подростки или знакомые ребята этого возраста, обязательно приглашайте их.</p></div>
+<div class="ev"><div class="d">Вс 18 окт, 10:30 / 11:00</div><div class="t">Воскресное Богослужение</div><p class="x">10:30 — чай, общение и знакомство, 11:00 — начало служения.</p><p class="x" style="margin-top:10px">В следующее воскресенье, 25 октября, в 11:00 состоится празднование Дня благодарения. Приглашайте своих друзей, родственников, соседей, коллег и всех, кого вы любите, — будем рады видеть каждого!</p></div>
+<p class="txt" style="margin-top:20px">Если вы сегодня впервые в нашей церкви, не спешите уходить после служения. Нам очень хочется познакомиться с вами лично, пообщаться и ответить на ваши вопросы.</p>
+<p class="txt">Большая просьба ко всем нашим братьям и сёстрам: не спешите расходиться сразу после богослужения. Останьтесь на чаепитие, познакомьтесь с теми, кого, возможно, ещё не знаете, поддержите новых людей добрым словом и общением. Пусть каждый, кто приходит в нашу церковь, почувствует себя частью большой Божьей семьи.</p>
+<p class="txt">Также обращаемся ко всем, кто хочет участвовать в каком-либо служении в Церкви: подойдите, пожалуйста, к диаконам — <span class="name">Михаилу</span> и <span class="name">Евгению</span>, или к брату <span class="name">Александру</span>.</p>
+<blockquote>«Служите друг другу, каждый тем даром, какой получил, как добрые домостроители многоразличной благодати Божией».<cite>1 Послание Петра 4:10</cite></blockquote>
+<p class="txt">Благословений вам и хорошего воскресного дня!</p>
+</section>
 
 <p class="foot">Актуальную версию хронометража уточняйте у координатора служения.</p>
-</section>
-
-<section id="news" hidden>
-<h2>ОБЪЯВЛЕНИЯ</h2>
-<p>Дорогие братья и сёстры! Основные события и объявления предстоящей недели.</p>
-
-<h2>РАСПИСАНИЕ СЛУЖЕНИЙ</h2>
-<div class="news"><div class="when">Сегодня</div><div class="title">Сестринское молитвенное служение</div>По окончании служения, после чаепития. Приглашаем всех сестёр внести свою лепту ходатайства за нашу Церковь и наши семьи.</div>
-<div class="news"><div class="when">Сегодня, 17:00</div><div class="title">Молодёжное служение</div>Молодёжь, будем рады видеть каждого из вас — приходите и приглашайте друзей!</div>
-<div class="news"><div class="when">Чт 15 окт, 18:00</div><div class="title">Вечернее богослужение</div>Особенное время, когда мы вместе ищем Божьего лица и молимся друг за друга.</div>
-<div class="news"><div class="when">Сб 17 окт, 15:30</div><div class="title">Подростковое служение</div>Если у вас есть подростки или знакомые ребята этого возраста, обязательно приглашайте их.</div>
-<div class="news"><div class="when">Вс 18 окт, 10:30 / 11:00</div><div class="title">Воскресное Богослужение</div>10:30 — чай, общение и знакомство, 11:00 — начало служения.</div>
-<div class="news"><div class="when">Вс 25 окт, 11:00</div><div class="title">Праздник Дня благодарения</div>Праздник Дня благодарения пройдёт 25 октября в 11:00 на этом месте.</div>
-
-<p>Если вы сегодня впервые в нашей церкви, не спешите уходить после служения. Нам очень хочется познакомиться с вами лично, пообщаться и ответить на ваши вопросы.</p>
-<p>Большая просьба ко всем нашим братьям и сёстрам: не спешите расходиться сразу после богослужения. Останьтесь на чаепитие, познакомьтесь с теми, кого, возможно, ещё не знаете, поддержите новых людей добрым словом и общением. Пусть каждый, кто приходит в нашу церковь, почувствует себя частью большой Божьей семьи.</p>
-<p>Также обращаемся ко всем, кто хочет участвовать в каком-либо служении в Церкви: подойдите, пожалуйста, к диаконам — <span class="name">Михаилу</span> и <span class="name">Евгению</span>, или к брату <span class="name">Александру</span>.</p>
-<blockquote class="verse">«Служите друг другу, каждый тем даром, какой получил, как добрые домостроители многоразличной благодати Божией».<br><span class="who">1 Послание Петра 4:10</span></blockquote>
-<p>Благословений вам и хорошего воскресного дня!</p>
-</section>
 </main>
 <script>
-function show(id){
-  ['plan','news'].forEach(function(k){
-    document.getElementById(k).hidden = (k!==id);
-    document.getElementById('t-'+k).setAttribute('aria-selected', k===id ? 'true':'false');
-  });
-}
+var tabs=document.querySelectorAll('[role=tab]');
+tabs.forEach(function(t){t.addEventListener('click',function(){
+tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+});});
 </script>
 </body>
 </html>
